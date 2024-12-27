@@ -50,12 +50,12 @@ class Var:
         "THUMBNAIL", default="https://graph.org/file/ad1b25807b81cdf1dff65.jpg"
     )
     FFMPEG = config("FFMPEG", default="ffmpeg")
-    CRF = config("CRF", default="27")
-    SEND_SCHEDULE = config("SEND_SCHEDULE", default=False, cast=bool)
+    CRF = config("CRF", default="20")
+    SEND_SCHEDULE = config("SEND_SCHEDULE", default=True, cast=bool)
     RESTART_EVERDAY = config("RESTART_EVERDAY", default=True, cast=bool)
     LOG_ON_MAIN = config("LOG_ON_MAIN", default=False, cast=bool)
     FORCESUB_CHANNEL_LINK = config("FORCESUB_CHANNEL_LINK", default="", cast=str)
 
     # Dev Configs
 
-    DEV_MODE = config("DEV_MODE", default=False, cast=bool)
+    DEV_MODE = config("DEV_MODE", default=True, cast=bool)
