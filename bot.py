@@ -33,7 +33,7 @@ from libs.subsplease import SubsPlease
 
 tools = Tools()
 tools.init_dir()
-bot = Bot(api_id=Var.API_ID, api_hash=Var.API_HASH)
+bot = Bot(StringSession(), api_id=Var.API_ID, api_hash=Var.API_HASH)
 dB = DataBase()
 subsplease = SubsPlease(dB)
 torrent = Torrent()
