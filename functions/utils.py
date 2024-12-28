@@ -16,6 +16,7 @@
 # if you are using this following code then don't forgot to give proper
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 import platform
+import platform
 from datetime import datetime
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from database import DataBase
@@ -34,8 +35,8 @@ class AdminUtils:
         self.system = f"{platform.system()}-{platform.release()}"
         self.telethon_version = _t_v
         self.pyrogram_version = _p_v
-        self.started_at = datetime.now()  # Update this line
-    ...
+        self.started_at = datetime.now()
+        ...
     
     def admin_panel(self):
         btn = [
