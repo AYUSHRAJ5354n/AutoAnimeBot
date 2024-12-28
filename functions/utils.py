@@ -87,19 +87,13 @@ class AdminUtils:
             file="AutoAnimeBot.log", thumb="thumb.jpg", buttons=self.back_btn()
         )
 
-    async def _restart(self, e, schedule):
-        await e.reply("`Restarting...`")
-        schedule.restart()
-
     async def _encode_t(self, e):
         if await self.db.is_original_upload():
             await self.db.toggle_original_upload()
-            return await e.edit(
-                "`Successfully On The Compression`", buttons=self.back_btn()
-            )
-        await self.db.toggle_original_upload()
-        return await e.edit(
-            "`Successfully Off The Compression`", buttons=self.back_btn()
+            return await safe_edit(e, "`Successfully On The Compression`", buttons=self.back_btn())
+    async def _restart(self, e, schedule):
+        await e.reply("`Restarting...`")
+        schedule.restart()
         )
 
     async def _btn_t(self, e):
