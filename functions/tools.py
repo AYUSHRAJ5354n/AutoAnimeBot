@@ -70,15 +70,20 @@ class Tools:
                 return await data.read()
             if real:
                 return data
-            return await data.text()
+            return await data.text(
+                class Tools:
+    # Existing methods...
 
     async def cover_dl(self, link):
         try:
             if not link:
                 return None
             image = await self.async_searcher(link, re_content=True)
-            fn = f"thumbs/{link.split('/')[-1]}"
-            if not fn.endswith((".jpg" or ".png")):
+            # Ensure the filename is sanitized
+            filename = os.path.basename(link)
+            filename = re.sub(r'[^\w\-_\.]', '_', filename)  # Sanitize filename
+            fn = os.path.join("thumbs", filename)
+            if not fn.endswith((".jpg", ".png")):
                 fn += ".jpg"
             async with aiofiles.open(fn, "wb") as file:
                 await file.write(image)
@@ -86,7 +91,7 @@ class Tools:
         except Exception as error:
             LOGS.exception(format_exc())
             LOGS.error(str(error))
-
+            
     async def mediainfo(self, file, bot):
         try:
             process = await asyncio.create_subprocess_shell(
