@@ -105,6 +105,14 @@
 
 **Uploading of Ongoing Animes Is Automatic**
 
+## Setup
+
+Before running the bot, make sure to set up the environment by running the following script:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+
 ## About
 
 - This Bot Is Currently Running In [This Channel](https://t.me/+q_OBZiXjkBFkYzk0) .
