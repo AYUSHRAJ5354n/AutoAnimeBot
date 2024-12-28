@@ -17,12 +17,14 @@
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 
 import platform
+froimport platform
 from datetime import datetime
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from telethon import Button
+from functions.config import Var
 from database import DataBase
 from core.bot import Bot
-from functions.tools import Tools  # Corrected import statement
+from functions.tools import Tools
 
 _t_v = "1.25.1"  # Telethon version
 _p_v = "2.0.102"  # Pyrogram version
@@ -42,6 +44,7 @@ class AdminUtils:
 
     ~ **Developer**  __@Kaif_00z __
     """
+    ...
 
     def __init__(self, dB: DataBase, bot: Bot):
         self.db = dB
