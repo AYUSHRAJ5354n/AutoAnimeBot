@@ -18,6 +18,10 @@
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from database import DataBase
 from core.bot import Bot
+from telethon.errors.rpcerrorlist import MessageNotModifiedError
+from database import DataBase
+from core.bot import Bot
+from core.tools import Tools  # Add this line
 
 async def safe_edit(message, new_content, buttons=None):
     if message.text != new_content:
