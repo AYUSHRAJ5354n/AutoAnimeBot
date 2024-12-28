@@ -71,7 +71,10 @@ class Tools:
             if real:
                 return data
             return await data.text()
-                class Tools:
+
+# Remove the incorrect indentation below
+class Tools:
+                    
     # Existing methods...
 
     async def cover_dl(self, link):
