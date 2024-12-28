@@ -18,11 +18,15 @@
 
 from decouple import config
 
-
 class Var:
     # Version
 
     __version__ = "v0.0.8"
+ class Var:
+    ...
+    BACKUP_CHANNEL = config("BACKUP_CHANNEL", default=0, cast=int)
+    MAIN_CHANNEL = config("MAIN_CHANNEL", cast=int)
+    ...
 
     # Telegram Credentials
 
