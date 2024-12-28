@@ -27,6 +27,14 @@ from telethon import events
 from core.bot import Bot, Var, asyncio
 from database import DataBase
 from functions.tools import Tools
+from telethon.errors.rpcerrorlist import MessageNotModifiedError
+
+async def safe_edit(message, new_content, buttons=None):
+    if message.text != new_content:
+        try:
+            await message.edit(new_content, buttons=buttons)
+        except MessageNotModifiedError:
+            pass  # Ignore the error if the content is not modified
 
 ABOUT = """
 **⏱ Uptime** : `{}`
