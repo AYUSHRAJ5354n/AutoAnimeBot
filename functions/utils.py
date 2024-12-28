@@ -17,7 +17,7 @@
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 import platform
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
-froimport platform
+from platform import platform
 from datetime import datetime
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from database import DataBase
