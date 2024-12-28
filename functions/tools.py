@@ -142,13 +142,16 @@ class Tools:
             LOGS.error(str(format_exc()))
 
     def init_dir(self):
-    if not os.path.exists("thumb.jpg"):
-        content = requests.get(Var.THUMB).content
-        with open("thumb.jpg", "wb") as f:
-            f.write(content)
-    for directory in ["encode/", "thumbs/", "downloads/"]:
-        if not os.path.isdir(directory):
-            os.mkdir(directory)
+        if not os.path.exists("thumb.jpg"):
+            content = requests.get(Var.THUMB).content
+            with open("thumb.jpg", "wb") as f:
+                f.write(content)
+        if not os.path.isdir("encode/"):
+            os.mkdir("encode/")
+        if not os.path.isdir("thumbs/"):
+            os.mkdir("thumbs/")
+        if not os.path.isdir("downloads/"):
+            os.mkdir("downloads/")
 
     def hbs(self, size):
         if not size:
