@@ -72,21 +72,13 @@ class Tools:
                 return data
             return await data.text()
 
-# Remove the incorrect indentation below
-class Tools:
-                    
-    # Existing methods...
-
     async def cover_dl(self, link):
         try:
             if not link:
                 return None
             image = await self.async_searcher(link, re_content=True)
-            # Ensure the filename is sanitized
-            filename = os.path.basename(link)
-            filename = re.sub(r'[^\w\-_\.]', '_', filename)  # Sanitize filename
-            fn = os.path.join("thumbs", filename)
-            if not fn.endswith((".jpg", ".png")):
+            fn = f"thumbs/{link.split('/')[-1]}"
+            if not fn.endswith((".jpg" or ".png")):
                 fn += ".jpg"
             async with aiofiles.open(fn, "wb") as file:
                 await file.write(image)
@@ -94,7 +86,7 @@ class Tools:
         except Exception as error:
             LOGS.exception(format_exc())
             LOGS.error(str(error))
-            
+
     async def mediainfo(self, file, bot):
         try:
             process = await asyncio.create_subprocess_shell(
@@ -200,7 +192,6 @@ class Tools:
         return out, err
 
     async def frame_counts(self, dl):
-    try:
         _x, _y = await self.bash_(
             f'mediainfo --fullscan """{dl}""" | grep "Frame count"'
         )
@@ -208,9 +199,6 @@ class Tools:
             LOGS.error(f"ERROR: `{_y}`")
             return False
         return _x.split(":")[1].split("\n")[0]
-    except Exception as e:
-        LOGS.error(f"Failed to count frames: {str(e)}")
-        return False
 
     async def compress(self, dl, out, log_msg):
         total_frames = await self.frame_counts(dl)
