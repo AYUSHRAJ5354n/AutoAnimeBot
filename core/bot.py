@@ -78,7 +78,9 @@ class Bot(TelegramClient):
 
     def __repr__(self):
         return "<AutoAnimeBot.Client :\n bot: {}\n>".format(self._bot)
-
+        
+class Bot(TelegramClient):
+    ...
     async def start_client(self, **kwargs):
         """function to start client"""
         if self._log_at:
@@ -111,20 +113,20 @@ class Bot(TelegramClient):
                 self.logger.info(f"Logged in as @{user_me.username}")
         self._bot = await self.is_bot()
 
- async def upload_anime(self, file, caption, thumb=None, is_button=False):
-    if not self.pyro_client.is_connected:
-        try:
-            await self.pyro_client.connect()
-        except ConnectionError:
-            pass
-    post = await self.pyro_client.send_document(
-        Var.BACKUP_CHANNEL if is_button else Var.MAIN_CHANNEL,
-        file,
-        caption=f"`{caption}`",
-        force_document=True,
-        thumb=thumb or "thumb.jpg",
-    )
-    return post
+    async def upload_anime(self, file, caption, thumb=None, is_button=False):
+        if not self.pyro_client.is_connected:
+            try:
+                await self.pyro_client.connect()
+            except ConnectionError:
+                pass
+        post = await self.pyro_client.send_document(
+            Var.BACKUP_CHANNEL if is_button else Var.MAIN_CHANNEL,
+            file,
+            caption=f"`{caption}`",
+            force_document=True,
+            thumb=thumb or "thumb.jpg",
+        )
+        return post
 
     async def upload_poster(self, file, caption, channel_id=None):
         post = await self.send_file(
@@ -133,6 +135,7 @@ class Bot(TelegramClient):
             caption=caption or "",
         )
         return post
+    ...
 
     async def is_joined(self, channel_id, user_id):
         try:
