@@ -31,7 +31,6 @@ from functions.info import AnimeInfo
 from functions.tools import Tools
 from libs.logger import Reporter
 
-
 class Executors:
     def __init__(
         self,
@@ -53,46 +52,46 @@ class Executors:
         self.msg_id = None
         self.output_file = None
 
- async def execute(self):
-    try:
-        rename = await self.anime_info.rename(self.is_original)
-        self.output_file = f"encode/{rename}"
-        thumb = await self.tools.cover_dl((await self.anime_info.get_poster()))
-        if self.is_original:
-            await self.reporter.started_renaming()
-            succ, out = await self.tools.rename_file(
-                self.input_file, self.output_file
-            )
-            if not succ:
-                return False, out
-        else:
-            _log_msg = await self.reporter.started_compressing()
-            succ, _new_msg = await self.tools.compress(
-                self.input_file, self.output_file, _log_msg
-            )
-            if not succ:
-                return False, _new_msg
-            self.reporter.msg = _new_msg
-        await self.reporter.started_uploading()
-        if self.is_button:
+    async def execute(self):
+        try:
+            rename = await self.anime_info.rename(self.is_original)
+            self.output_file = f"encode/{rename}"
+            thumb = await self.tools.cover_dl((await self.anime_info.get_poster()))
+            if self.is_original:
+                await self.reporter.started_renaming()
+                succ, out = await self.tools.rename_file(
+                    self.input_file, self.output_file
+                )
+                if not succ:
+                    return False, out
+            else:
+                _log_msg = await self.reporter.started_compressing()
+                succ, _new_msg = await self.tools.compress(
+                    self.input_file, self.output_file, _log_msg
+                )
+                if not succ:
+                    return False, _new_msg
+                self.reporter.msg = _new_msg
+            await self.reporter.started_uploading()
+            if self.is_button:
+                msg = await self.bot.upload_anime(
+                    self.output_file, rename, thumb or "thumb.jpg", is_button=True
+                )
+                btn = Button.url(
+                    f"{self.anime_info.data.get('video_resolution')}",
+                    url=f"https://t.me/{((await self.bot.get_me()).username)}?start={msg.id}",
+                )
+                self.msg_id = msg.id
+                return True, btn
             msg = await self.bot.upload_anime(
-                self.output_file, rename, thumb or "thumb.jpg", is_button=True
-            )
-            btn = Button.url(
-                f"{self.anime_info.data.get('video_resolution')}",
-                url=f"https://t.me/{((await self.bot.get_me()).username)}?start={msg.id}",
+                self.output_file, rename, thumb or "thumb.jpg"
             )
             self.msg_id = msg.id
-            return True, btn
-        msg = await self.bot.upload_anime(
-            self.output_file, rename, thumb or "thumb.jpg"
-        )
-        self.msg_id = msg.id
-        return True, []
-    except BaseException:
-        await self.reporter.report_error(str(format_exc()), log=True)
-        return False, str(format_exc())
-
+            return True, []
+        except BaseException:
+            await self.reporter.report_error(str(format_exc()), log=True)
+            return False, str(format_exc())
+    
     def run_further_work(self):
         asyncio.run(self.further_work())
 
