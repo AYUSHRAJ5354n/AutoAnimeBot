@@ -17,34 +17,15 @@
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 import platform
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
+froimport platform
+from datetime import datetime
+from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from database import DataBase
 from core.bot import Bot
 from functions.tools import Tools  # Corrected import statement
 
 _t_v = "1.25.1"  # Telethon version
 _p_v = "2.0.102"  # Pyrogram version
-
-async def safe_edit(message, new_content, buttons=None):
-    if message.text != new_content:
-        try:
-            await message.edit(new_content, buttons=buttons)
-        except MessageNotModifiedError:
-            pass  # Ignore the error if the content is not modified
-
-ABOUT = """
-**⏱ Uptime** : `{}`
-**💡 Version** : `{}`
-**👥 Users** : `{}`
-**🗃️ Documents** : `{}`
-
-• **🐍 Python**: `{}`
-• **✈️ Telethon**: `{}`
-• **🏔️ Pyrogram**: `{}`
-• **💻 Server**: `{}`
-• **📖 Source Code** : {}
-
-~ **Developer**  __@Kaif_00z __
-"""
 
 class AdminUtils:
     def __init__(self, dB: DataBase, bot: Bot):
@@ -55,7 +36,7 @@ class AdminUtils:
         self.system = f"{platform.system()}-{platform.release()}"
         self.telethon_version = _t_v
         self.pyrogram_version = _p_v
-        self.started_at = dt.now()
+        self.started_at = datetime.now()  # Update this line
     ...
     
     def admin_panel(self):
