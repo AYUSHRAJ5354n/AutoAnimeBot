@@ -192,6 +192,7 @@ class Tools:
         return out, err
 
     async def frame_counts(self, dl):
+    try:
         _x, _y = await self.bash_(
             f'mediainfo --fullscan """{dl}""" | grep "Frame count"'
         )
@@ -199,6 +200,9 @@ class Tools:
             LOGS.error(f"ERROR: `{_y}`")
             return False
         return _x.split(":")[1].split("\n")[0]
+    except Exception as e:
+        LOGS.error(f"Failed to count frames: {str(e)}")
+        return False
 
     async def compress(self, dl, out, log_msg):
         total_frames = await self.frame_counts(dl)
