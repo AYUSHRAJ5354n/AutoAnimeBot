@@ -15,9 +15,9 @@
 
 # if you are using this following code then don't forgot to give proper
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
-
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from database import DataBase
+from core.bot import Bot
 
 async def safe_edit(message, new_content, buttons=None):
     if message.text != new_content:
@@ -52,7 +52,7 @@ class AdminUtils:
         self.pyrogram_version = _p_v
         self.started_at = dt.now()
     ...
-
+    
     def admin_panel(self):
         btn = [
             [
