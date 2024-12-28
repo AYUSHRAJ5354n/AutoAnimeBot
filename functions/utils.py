@@ -15,6 +15,7 @@
 
 # if you are using this following code then don't forgot to give proper
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
+import platform
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from database import DataBase
 from core.bot import Bot
