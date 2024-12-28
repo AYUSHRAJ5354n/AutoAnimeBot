@@ -16,17 +16,6 @@
 # if you are using this following code then don't forgot to give proper
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 
-import platform
-from datetime import datetime as dt
-
-from pyrogram import __version__ as _p_v
-from telethon import Button
-from telethon import __version__ as _t_v
-from telethon import events
-
-from core.bot import Bot, Var, asyncio
-from database import DataBase
-from functions.tools import Tools
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 
 async def safe_edit(message, new_content, buttons=None):
@@ -50,7 +39,6 @@ ABOUT = """
 
 ~ **Developer**  __@Kaif_00z __
 """
-
 
 class AdminUtils:
     def __init__(self, dB: DataBase, bot: Bot):
@@ -91,10 +79,12 @@ class AdminUtils:
         if await self.db.is_original_upload():
             await self.db.toggle_original_upload()
             return await safe_edit(e, "`Successfully On The Compression`", buttons=self.back_btn())
+        await self.db.toggle_original_upload()
+        return await safe_edit(e, "`Successfully Off The Compression`", buttons=self.back_btn())
+
     async def _restart(self, e, schedule):
         await e.reply("`Restarting...`")
         schedule.restart()
-        )
 
     async def _btn_t(self, e):
         if await self.db.is_separate_channel_upload():
