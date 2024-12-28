@@ -17,6 +17,7 @@
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
+from database import DataBase
 
 async def safe_edit(message, new_content, buttons=None):
     if message.text != new_content:
@@ -50,6 +51,7 @@ class AdminUtils:
         self.telethon_version = _t_v
         self.pyrogram_version = _p_v
         self.started_at = dt.now()
+    ...
 
     def admin_panel(self):
         btn = [
