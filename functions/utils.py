@@ -21,6 +21,9 @@ from database import DataBase
 from core.bot import Bot
 from functions.tools import Tools  # Corrected import statement
 
+_t_v = "1.25.1"  # Telethon version
+_p_v = "2.0.102"  # Pyrogram version
+
 async def safe_edit(message, new_content, buttons=None):
     if message.text != new_content:
         try:
