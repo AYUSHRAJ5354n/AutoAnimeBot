@@ -70,7 +70,7 @@ class Tools:
                 return await data.read()
             if real:
                 return data
-            return await data.text(
+            return await data.text()
                 class Tools:
     # Existing methods...
 
