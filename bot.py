@@ -17,9 +17,8 @@
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 
 from traceback import format_exc
-
+from telethon.sessions import StringSession
 from telethon import Button, events
-
 from core.bot import Bot
 from core.executors import Executors
 from database import DataBase
@@ -39,6 +38,8 @@ subsplease = SubsPlease(dB)
 torrent = Torrent()
 schedule = ScheduleTasks(bot)
 admin = AdminUtils(dB, bot)
+
+# ... (rest of your code remains unchanged)
 
 @bot.on(
     events.NewMessage(
