@@ -15,10 +15,11 @@
 
 # if you are using this following code then don't forgot to give proper
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
-import platform
+
 import platform
 from datetime import datetime
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
+from telethon import Button
 from database import DataBase
 from core.bot import Bot
 from functions.tools import Tools  # Corrected import statement
@@ -27,6 +28,21 @@ _t_v = "1.25.1"  # Telethon version
 _p_v = "2.0.102"  # Pyrogram version
 
 class AdminUtils:
+    ABOUT = """
+    **⏱ Uptime** : `{}`
+    **💡 Version** : `{}`
+    **👥 Users** : `{}`
+    **🗃️ Documents** : `{}`
+
+    • **🐍 Python**: `{}`
+    • **✈️ Telethon**: `{}`
+    • **🏔️ Pyrogram**: `{}`
+    • **💻 Server**: `{}`
+    • **📖 Source Code** : {}
+
+    ~ **Developer**  __@Kaif_00z __
+    """
+
     def __init__(self, dB: DataBase, bot: Bot):
         self.db = dB
         self.bot = bot
@@ -36,22 +52,7 @@ class AdminUtils:
         self.telethon_version = _t_v
         self.pyrogram_version = _p_v
         self.started_at = datetime.now()
-        ...
-    ABOUT = """
-**⏱ Uptime** : `{}`
-**💡 Version** : `{}`
-**👥 Users** : `{}`
-**🗃️ Documents** : `{}`
 
-• **🐍 Python**: `{}`
-• **✈️ Telethon**: `{}`
-• **🏔️ Pyrogram**: `{}`
-• **💻 Server**: `{}`
-• **📖 Source Code** : {}
-
-~ **Developer**  __@Kaif_00z __
-"""
-    
     def admin_panel(self):
         btn = [
             [
@@ -158,8 +159,8 @@ class AdminUtils:
     async def _about(self, e):
         total_docs = await self.db.file_store_db.count_documents({})
         total_users = await self.db.broadcast_db.count_documents({})
-        text = ABOUT.format(
-            self.tools.ts(int((dt.now() - self.started_at).seconds) * 1000),
+        text = self.ABOUT.format(
+            self.tools.ts(int((datetime.now() - self.started_at).seconds) * 1000),
             Var.__version__,
             total_users,
             total_docs,
@@ -169,4 +170,4 @@ class AdminUtils:
             self.system,
             "[OngoingAnimeBot](https://github.com/Kaif-00z/AutoAnimeBot)",
         )
-        await e.reply(text, file="assest/about.jpg", link_preview=False)
+        await e.reply(text, file="assest/about.jpg", link_preview=False)    
