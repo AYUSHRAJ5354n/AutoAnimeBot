@@ -37,6 +37,20 @@ class AdminUtils:
         self.pyrogram_version = _p_v
         self.started_at = datetime.now()
         ...
+    ABOUT = """
+**⏱ Uptime** : `{}`
+**💡 Version** : `{}`
+**👥 Users** : `{}`
+**🗃️ Documents** : `{}`
+
+• **🐍 Python**: `{}`
+• **✈️ Telethon**: `{}`
+• **🏔️ Pyrogram**: `{}`
+• **💻 Server**: `{}`
+• **📖 Source Code** : {}
+
+~ **Developer**  __@Kaif_00z __
+"""
     
     def admin_panel(self):
         btn = [
