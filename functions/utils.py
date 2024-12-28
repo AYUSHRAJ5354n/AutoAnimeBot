@@ -17,7 +17,6 @@
 # credit to t.me/kAiF_00z (github.com/kaif-00z)
 
 import platform
-froimport platform
 from datetime import datetime
 from telethon.errors.rpcerrorlist import MessageNotModifiedError
 from telethon import Button
@@ -35,16 +34,15 @@ class AdminUtils:
     **💡 Version** : `{}`
     **👥 Users** : `{}`
     **🗃️ Documents** : `{}`
-
+    
     • **🐍 Python**: `{}`
     • **✈️ Telethon**: `{}`
     • **🏔️ Pyrogram**: `{}`
     • **💻 Server**: `{}`
     • **📖 Source Code** : {}
-
+    
     ~ **Developer**  __@Kaif_00z __
     """
-    ...
 
     def __init__(self, dB: DataBase, bot: Bot):
         self.db = dB
@@ -173,4 +171,4 @@ class AdminUtils:
             self.system,
             "[OngoingAnimeBot](https://github.com/Kaif-00z/AutoAnimeBot)",
         )
-        await e.reply(text, file="assest/about.jpg", link_preview=False)    
+        await e.reply(text, file="assest/about.jpg", link_preview=False)
