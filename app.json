@@ -40,22 +40,22 @@
 
         "MAIN_CHANNEL": {
             "description": "ID of Your Main Channel.",
-            "value": ""
+            "value": "-1002456337007"
         },
 
         "BACKUP_CHANNEL": {
             "description": "If You Want Button Upload On Main Channel Don't Forget To Add Backup Channel becoz anime will be save in backup channel",
-            "value": ""
+            "value": "-1002462715587"
         },
 
         "LOG_CHANNEL": {
             "description": "Channel ID Where You Can Check Status Of Tasks.",
-            "value": ""
+            "value": "-1002206233283"
         },
 
         "CLOUD_CHANNEL": {
             "description": "Channel ID Where Bot Will Upload Samples And Screen Shots.",
-            "value": ""
+            "value": "-1002462715587"
         },
 
         "FORCESUB_CHANNEL": {
