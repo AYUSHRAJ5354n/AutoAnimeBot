@@ -7,5 +7,7 @@ RUN apt -qq update && apt -qq install -y git wget pv jq python3-dev mediainfo gc
 
 COPY . .
 RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install flask
 
-CMD ["bash","run.sh"]
+EXPOSE 8000
+CMD ["bash", "run.sh"]
