@@ -34,7 +34,7 @@ class AnimeInfo:
 **‣ Quality:** `480p|720p|1080p`
 **‣ Season:** `{}`
 **‣ Episode:** `{}`
-join:- @Unfold_network
+  ‣ join:- @Unfold_network
 **━━━━━━━━━━━━━━━**
 """
         self.proper_name = self.get_proper_name_for_func(name)
