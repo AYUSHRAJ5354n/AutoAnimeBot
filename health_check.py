@@ -1,10 +1,13 @@
-from flask import Flask
+import socket
 
-app = Flask(__name__)
+HOST = "0.0.0.0"
+PORT = 8080
 
-@app.route("/health")
-def health():
-    return "OK", 200
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8080)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server:
+    server.bind((HOST, PORT))
+    server.listen(1)
+    print(f"TCP health check running on port {PORT}...")
+    
+    while True:
+        conn, _ = server.accept()
+        conn.close()  # Close immediately to satisfy TCP checks
