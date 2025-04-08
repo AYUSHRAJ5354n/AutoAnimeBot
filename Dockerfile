@@ -8,4 +8,4 @@ RUN apt-get -qq update && apt-get -qq install -y git wget pv jq python3-dev medi
 COPY . .
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-CMD ["bash","run.sh"]
+CMD python tcp_health_check.py & run.sh
